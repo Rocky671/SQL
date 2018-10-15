@@ -1,0 +1,42 @@
+Inserting myself as a new employee:
+INSERT INTO `Employee`(`id`, `firstName`, `lastName`, `empType`, `payType`, `projID`) VALUES ( 41, 'Rocky', 'Vargas', 'Producer' , 4, 3)
+
+Inserting five new games: 
+INSERT INTO `Project`(`id`, `name`, `launch`, `state`, `gameGenre`) VALUES (6, 'Chicken Destroyer 2', 10/20/2020, 2, 2)
+INSERT INTO `Project`(`id`, `name`, `launch`, `state`, `gameGenre`) VALUES (7, 'UAT: The Reckoning' , 5/4/2050, 1, 4)
+INSERT INTO `Project`(`id`, `name`, `launch`, `state`, `gameGenre`) VALUES (8, 'South Mountain: Werewolves' , 2/1/2032, 3, 1)
+INSERT INTO `Project`(`id`, `name`, `launch`, `state`, `gameGenre`) VALUES (9, 'When Potatoes Attack' , 6/5/2040, 4, 5)
+INSERT INTO `Project`(`id`, `name`, `launch`, `state`, `gameGenre`) VALUES (10,'North Korea: Invasion' , 1/1/2030, 1, 3)
+
+-- THESE UPDATES ARE JUST PRETEND! I DON'T ACTUALLY HAVE THESE TABLES BUT THEORETICALLY THEY'LL WORK 
+UPDATE `quantities` SET `quantity` = 100 WHERE `id` = 6;
+UPDATE `prices` SET `price` = 20.69 WHERE `id` = 6;
+
+UPDATE `quantities` SET `quantity` = 6000 WHERE `id` = 7;
+UPDATE `prices` SET `price` = 20.69 WHERE `id` = 6;
+
+UPDATE `quantities` SET `quantity` = 2000 WHERE `id` = 8;
+UPDATE `prices` SET `price` = 20.69 WHERE `id` = 6;
+
+UPDATE `quantities` SET `quantity` = 500 WHERE `id` = 9;
+UPDATE `prices` SET `price` = 20.69 WHERE `id` = 6;
+
+UPDATE `quantities` SET `quantity` = 5000 WHERE `id` = 10;
+UPDATE `prices` SET `price` = 20.69 WHERE `id` = 6;
+
+SELECT p.name as Game, pub.Name as Publisher FROM Project p JOIN Publisher pub ON pub.pubID = p.pubType;
+
+-- Modified final query: Write a query that would list all games published by Ubisoft
+SELECT * FROM `Project` WHERE pubType = 3;
+
+-- Write a query that gets all the name, launch date (e.g. August 16, 2017), state (e.g. Released), genre (e.g. Horror), and publisher (e.g. Ubisoft)
+Tom Clancy's Pokemon of the Dead; August 16, 2017; Completed; First Person Shooter; EA
+SELECT project.name as Game, DATE_FORMAT(project.launch, "%M %d, %Y") as 'Release Date', state.description as Status, genre.description as Genre, publisher.Name as Publisher
+FROM Project project
+JOIN ProjectState state ON state.id = project.state
+JOIN Genre genre ON genre.id = project.gameGenre
+JOIN Publisher publisher ON project.pubType = publisher.pubID;
+
+
+
+
